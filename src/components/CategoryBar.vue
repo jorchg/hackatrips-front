@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div class="buttons">
-      <b-button v-for="category in categories" variant="success">{{ category }}</b-button>
+      <b-button
+        v-for="category in categories"
+        variant="success"
+        v-bind:key="category"
+      >
+        {{ category }}
+      </b-button>
     </div>
   </div>
 </template>
@@ -32,7 +38,7 @@ export default {
 
   },
   updated() {
-    
+
   },
 };
 </script>
