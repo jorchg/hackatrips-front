@@ -10,7 +10,7 @@
       <p class="card-text">
         {{ data.description }}
       </p>
-      <p class="card-text card-text-bold" v-bind:key="Number(latitude)">Distancia: {{ data.distance }} Km</p>
+      <p v-if="noDistance !== true" class="card-text card-text-bold" v-bind:key="Number(latitude)">Distancia: {{ data.distance }} Km</p>
       <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
     </b-card>
   </b-col>
@@ -23,6 +23,7 @@ export default {
     'data',
     'longitude',
     'latitude',
+    'noDistance',
   ],
   data() {
     return {
@@ -33,7 +34,6 @@ export default {
 
   },
   mounted() {
-    console.log(this.data.distance);
   }
 }
 </script>

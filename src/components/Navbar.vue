@@ -17,7 +17,7 @@
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
-    <b-navbar-brand href="#">TTS</b-navbar-brand>
+    <b-navbar-brand to="/">TTS</b-navbar-brand>
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   </b-navbar>
 
