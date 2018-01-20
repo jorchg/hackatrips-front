@@ -3,7 +3,7 @@
     <div class="buttons">
       <b-button
         v-for="category in categories"
-        variant="success"
+        variant="primary"
         v-bind:key="category"
       >
         {{ category }}

@@ -6,7 +6,8 @@
         <b-row>
           <item
             :data="object"
-            v-for="object in objects"
+            :index="index"
+            v-for="(object, index) in objects"
             v-bind:key="JSON.stringify(object)"
           ></item>
         </b-row>
