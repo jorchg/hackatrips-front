@@ -9,11 +9,11 @@
         </b-nav-form>
         <b-nav-item-dropdown right>
           <!-- Using button-content slot -->
-          <template slot="button-content">
-            <em>Perfil</em>
-          </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Signout</b-dropdown-item>
+            <template slot="button-content">
+              <em>Perfil</em>
+            </template>
+          <b-dropdown-item to="/perfil">Perfil</b-dropdown-item>
+          <b-dropdown-item>Signout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
