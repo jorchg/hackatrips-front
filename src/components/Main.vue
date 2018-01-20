@@ -1,7 +1,7 @@
 <template>
   <div>
     <category-bar></category-bar>
-    <item-list></item-list>
+    <item-list :latitude="latitude" :longitude="longitude"></item-list>
   </div>
 </template>
 
@@ -14,6 +14,33 @@ export default {
   components: {
     CategoryBar,
     ItemList,
+  },
+  data() {
+    return {
+      locationOptions: {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      },
+      latitude: {
+        type: Number,
+      },
+      longitude: {
+        type: Number,
+      },
+    };
+  },
+  methods: {
+    locationSuccess(pos) {
+      this.longitude = pos.coords.longitude;
+      this.latitude = pos.coords.latitude;
+    },
+  },
+  created() {
+    window
+      .navigator
+      .geolocation
+      .getCurrentPosition(this.locationSuccess, null, this.locationOptions);
   },
 };
 </script>

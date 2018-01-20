@@ -2,7 +2,13 @@
   <div class="container">
     <b-container fluid>
       <b-row>
-        <item :data="object" v-for="object in objects"></item>
+        <item
+          :longitude="longitude"
+          :latitude="latitude"
+          :data="object"
+          v-for="object in objects"
+          v-bind:key="JSON.stringify(object)"
+        ></item>
       </b-row>
     </b-container>
   </div>
@@ -17,12 +23,16 @@ export default {
   components: {
     Item,
   },
+  props: [
+    'longitude',
+    'latitude',
+  ],
   data() {
     return {
       objects,
     };
   },
-}
+};
 </script>
 
 <style scoped>
