@@ -13,6 +13,10 @@
       </b-navbar-nav>
     </b-collapse>
     <b-navbar-brand to="/">TTS</b-navbar-brand>
+    <div class="credits">
+      <span>{{ me.balance }}</span>
+      <icon style="margin-left: 5px;" name="credit-card" scale="1"></icon>
+    </div>
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   </b-navbar>
 
@@ -20,7 +24,21 @@
 </template>
 
 <script>
+import axios from 'axios';
 
+export default {
+  data() {
+    return {
+      me: {
+        balance: 0,
+      },
+    };
+  },
+  async created() {
+    this.me = await axios.get('http://localhost:8000/users/5a6375a86d1257161e71e3a2')
+      .then(response => response.data);
+  },
+};
 </script>
 
 <style scoped>
@@ -29,5 +47,12 @@ form {
 }
 input {
   margin-right: 20px;
+}
+.credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 70px;
+  position: relative;
 }
 </style>

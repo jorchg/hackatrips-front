@@ -8,6 +8,9 @@
         img-top
         tag="article"
         class="mb-1">
+        <div class="object-info">
+          <span style="font-weight: 600;">{{ data.price }}</span><icon style="margin-left: 5px;" name="credit-card" scale="1"></icon>
+        </div>
         <p class="card-text">
           {{ data.description }}
         </p>
@@ -58,5 +61,22 @@ img {
 .card-text-bold {
   font-weight: 600;
   font-size: 18px;
+}
+article::after {
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to bottom, rgba(146, 53, 169, 0.1) 0, rgba(0, 0, 0, 0.5) 100%);
+  height: 150px;
+  width: 100%;
+  content: '';
+}
+.object-info {
+  margin-top: -90px;
+  position: absolute;
+  color: white;
+  z-index: 10;
+  text-align: right;
+  display: flex;
+  align-items: center;
 }
 </style>
