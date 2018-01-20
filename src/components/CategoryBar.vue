@@ -25,12 +25,14 @@ export default {
       categories: [],
     };
   },
-  created: function() {
+  created() {
     this.categories = categories;
   },
-  mounted: function() {
+  mounted() {
+
   },
-  updated: function() {
+  updated() {
+    
   },
 };
 </script>
