@@ -1,19 +1,21 @@
 <template>
-  <b-col class="col-12 col-sm-12 col-md-4">
-    <b-card
-      :title="data.name"
-      :img-src="data.image"
-      img-alt="Image"
-      img-top
-      tag="article"
-      class="mb-1">
-      <p class="card-text">
-        {{ data.description }}
-      </p>
-      <p v-if="noDistance !== true" class="card-text card-text-bold" v-bind:key="Number(latitude)">Distancia: {{ data.distance }} Km</p>
-      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
-    </b-card>
-  </b-col>
+  <router-link :to="{ name: 'Object', params: { id: data._id }}">
+    <b-col class="col-12 col-sm-12 col-md-4">
+      <b-card
+        :title="data.name"
+        :img-src="data.image"
+        img-alt="Image"
+        img-top
+        tag="article"
+        class="mb-1">
+        <p class="card-text">
+          {{ data.description }}
+        </p>
+        <p v-if="noDistance !== true" class="card-text card-text-bold" v-bind:key="Number(latitude)">Distancia: {{ data.distance }} Km</p>
+        <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
+      </b-card>
+    </b-col>
+  </router-link>
 </template>
 
 <script>

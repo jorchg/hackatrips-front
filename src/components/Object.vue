@@ -1,22 +1,32 @@
 <template>
   <div>
-    <p>{{ object }}</p>
+    <item-with-history
+      :data="object"
+      :noDistance="true"
+    ></item-with-history>
   </div>
 </template>
 
 <script>
-import object from '../assets/mocks/object.json';
+import axios from 'axios';
+import ItemWithHistory from '@/components/ItemWithHistory';
 
 export default {
   name: 'Object',
   data() {
     return {
-      object,
+      object: {},
     };
   },
+  components: {
+    ItemWithHistory,
+  },
   props: [
-    'id',
   ],
+  async created() {
+    this.object = await axios.get('http://localhost:8000/objects/' + this.$route.params.id)
+      .then(response => response.data);
+  },
 };
 </script>
 

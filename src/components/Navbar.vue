@@ -7,14 +7,9 @@
           <b-form-input size="md" class="mr-sm-2" type="text" placeholder="Buscar"/>
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Buscar</b-button>
         </b-nav-form>
-        <b-nav-item-dropdown right>
-          <!-- Using button-content slot -->
-            <template slot="button-content">
-              <em>Perfil</em>
-            </template>
-          <b-dropdown-item to="/perfil">Perfil</b-dropdown-item>
-          <b-dropdown-item>Signout</b-dropdown-item>
-        </b-nav-item-dropdown>
+        <b-navbar-nav>
+          <b-nav-item to="/perfil">Perfil</b-nav-item>
+        </b-navbar-nav>
       </b-navbar-nav>
     </b-collapse>
     <b-navbar-brand to="/">TTS</b-navbar-brand>
