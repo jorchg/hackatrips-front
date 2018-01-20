@@ -14,7 +14,7 @@
 
 <script>
 import Item from '@/components/Item';
-import objects from '../assets/mocks/objects.json';
+import axios from 'axios';
 
 export default {
   name: 'ItemList',
@@ -31,7 +31,7 @@ export default {
         timeout: 5000,
         maximumAge: 0,
       },
-      objects,
+      objects: [],
       longitude: 0,
       latitude: 0,
     };
@@ -42,8 +42,8 @@ export default {
       this.latitude = pos.coords.latitude;
       this.objects = this.objects.map((object) => {
         object.distance = Math.round(this.getDistanceFromLatLonInKm(
-          object.location.coordinates[0],
-          object.location.coordinates[1],
+          object.location[0].coordinates[0],
+          object.location[0].coordinates[1],
           this.latitude,
           this.longitude,
         ));
@@ -69,11 +69,14 @@ export default {
       return deg * (Math.PI / 180)
     },
   },
-  created() {
+  async created() {
     window
       .navigator
       .geolocation
       .getCurrentPosition(this.locationSuccess, null, this.locationOptions);
+
+    this.objects = await axios.get('http://localhost:8000/objects')
+      .then(response => response.data)
   },
 };
 </script>
