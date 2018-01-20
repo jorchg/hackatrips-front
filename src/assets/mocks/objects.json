@@ -1,0 +1,90 @@
+[{
+		"name": "Tabla de Kitesurf",
+		"description": "Tabla Kite Dub Naish 2015. Es ideal para las olas de Marruecos",
+		"image": "http://i.imgur.com/v0krLuZ.jpg",
+		"location": {
+			"type": "Point",
+			"name": "Dakhla",
+			"poi_name": "Hotel Western Sahara, Marruecos",
+			"poi_id": "",
+			"coordinates": [23.700141, -15.955252]
+		},
+		"log": [{
+				"user_id": "",
+				"username": "luisdiazdeldedo",
+				"image": "luisdiazdeldedo.jpg",
+				"story": "Me encanto tener esta tabla! 7 dias increibles con mi Naish! Super recomendable"
+			},
+			{
+				"user_id": "",
+				"username": "elena",
+				"image": "elena.jpg",
+				"story": "Me da mucha pena dejarla pero se que alguien como yo le sacará partido."
+			},
+			{
+				"user_id": "",
+				"username": "carlos",
+				"image": "carlos.jpg",
+				"story": "Genial experiencia! Gracias!"
+			}
+		]
+	},
+	{
+		"name": "Fixie",
+		"description": "Me la compré en Craiglist y la tuve un mes. Está como nueva! Disfrutadla como yo la he disfrutado en New York. La llave del candado está debajo del pedal derecho.",
+		"image": "http://i.imgur.com/ZLweB1C.jpg",
+		"location": {
+			"type": "Point",
+			"name": "5a avenida con la 57th",
+			"poi_name": "Trump Tower",
+			"poi_id": "",
+			"coordinates": [40.762745, -73.974016]
+		},
+		"log": [
+
+			{
+				"user_id": "",
+				"username": "paco",
+				"image": "paco.jpg",
+				"story": "La tuve una semana. Es perfecta para moverse con New York! Atarla bien, que casi me la roban! Y cuidado por que no tiene frenos, hay que frenar a pierna!!!"
+			},
+			{
+				"user_id": "",
+				"username": "elena",
+				"image": "elena.jpg",
+				"story": "Ha estado genial. Siempre recordaré mis paseos por Central Park en esta fixie."
+			}
+		]
+	},
+	{
+		"name": "Guitarra viajera",
+		"description": "Hay que afinarla antes de tocar pero suena muy bien para haber viajado tanto. Había pensado llevármela de vuelta a casa pero me dijo que se quería quedar en Graná. Así que la dejé aquí para que tu la disfrutes.",
+		"image": "http://i.imgur.com/ZVMcKE0.jpg",
+		"location": {
+			"type": "Point",
+			"name": "Bar Casa del Arte Flamenco, Granada",
+			"poi_name": "Casa del Arte Flamenco",
+			"poi_id": "",
+			"coordinates": [37.176383, -3.595282]
+		},
+		"log": [{
+				"user_id": "",
+				"username": "marisa",
+				"image": "marisa.jpg",
+				"story": "No se tocarla!!! Pero tenía que tener una guitarra en mis manos en mi visita a Granada."
+			},
+			{
+				"user_id": "",
+				"username": "paco",
+				"image": "paco.jpg",
+				"story": "Rompí una cuerda pero la he cambiado para que la podáis disfrutar :D"
+			},
+			{
+				"user_id": "",
+				"username": "carlos",
+				"image": "carlos.jpg",
+				"story": "Suena un poco mal la pobre y se ve que ha viajado mucho pero sirve para alegrar una fiesta."
+			}
+		]
+	}
+]
