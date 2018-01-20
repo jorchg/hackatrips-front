@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <b-col class="col-12 col-sm-12 col-md-4">
     <b-card
       :title="data.name"
       :img-src="data.image"
       img-alt="Image"
       img-top
       tag="article"
-      class="mb-2">
+      class="mb-1">
       <p class="card-text">
         {{ data.description }}
       </p>
       <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
-  </div>
+  </b-col>
 </template>
 
 <script>

@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <item :data="object" v-for="object in objects"></item>
+    <b-container fluid>
+      <b-row>
+        <item :data="object" v-for="object in objects"></item>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
