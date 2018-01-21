@@ -68,13 +68,13 @@ export default {
       })
         .then(response => response.data.access_token);
 
-      await axios({
+      const simulated = await axios({
         headers: {
           Authorization: `jwt ${accessToken}`,
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        url: 'https://apis.bbva.com/payments-sbx/v1/me/transfers',
+        url: 'https://apis.bbva.com/payments-sbx/v1/me/transfer-simulations',
         data: {
           originAccount: {
             id: 'ES0182002000000000500000000332046493XXXXXXXXX',
@@ -93,47 +93,9 @@ export default {
         	'description': `Payment of article ${this.$route.params.id}`,
         },
       })
-        .then(response => response.data.data)
-        .catch(async (e) => {
-          console.log('ERROR: ', e.response);
-          const { ticket, otp_url, token } = e.response.data.data;
-          await axios({
-            headers: {
-              Authorization: `jwt ${accessToken}`,
-              'Content-Type': 'application/json',
-            },
-            method: 'GET',
-            url: `${otp_url}/?ticket=${ticket}&back_url=${window.location.href.split('?')[0]}`,
-          })
-            .then(response => response.data);
+        .then(response => response.data.data);
 
-            await axios({
-              headers: {
-                Authorization: `jwt ${token}`,
-                'Content-Type': 'application/json',
-              },
-              method: 'POST',
-              url: 'https://apis.bbva.com/payments-sbx/v1/me/transfers',
-              data: {
-                originAccount: {
-                  id: 'ES0182002000000000500000000332046493XXXXXXXXX',
-                },
-                remoteAccount: {
-                  name: 'TSS',
-                  number: 'ES9301822759590201530659',
-                  bic: 'BBVAESMM',
-                },
-                value: {
-                  amount: '10',
-                  currency: 'EUR',
-                },
-                'transferType': 'SEPA',
-                'feePolicy': 'SHARED',
-                'description': `Payment of article ${this.$route.params.id}`,
-              },
-            })
-              .then(response => response.data.data);
-        });
+      this.bbvacode = '';
     },
   },
   async created() {
