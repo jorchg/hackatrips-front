@@ -104,6 +104,13 @@ export default {
       this.bbvacode = '';
       this.paymentOk = true;
       const modalRef = `modal_${this.$route.params.id}`;
+      await axios({
+        method: 'GET',
+        url: `http://localhost:8000/objects/${this.$route.params.id}/availability/false`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       setTimeout(() => {
         this.$refs[modalRef].hide()
       }, 2000);
