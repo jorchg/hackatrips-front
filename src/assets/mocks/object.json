@@ -1,0 +1,36 @@
+{
+    "_id" : "5a6351eb6d1257161e71e385",
+    "name" : "Tabla de Kitesurf",
+    "description" : "Tabla Kite Dub Naish 2015. Es ideal para las olas de Marruecos",
+    "balance" : 318,
+    "price": 187,
+    "available" : true,
+    "image":"https://imgur.com/v0krLuZ",
+    "location": {
+      "type": "Point",
+      "name": "Dakhla",
+      "poi_name": "Hotel Western Sahara, Marruecos",
+      "poi_id": "",
+      "coordinates": [23.700141, -15.955252]
+    },
+    "history" : [
+        {
+        	"user_id" : "5a6375a86d1257161e71e3a2",
+            "username": "luisdiazdeldedo",
+            "image" : "https://imgur.com/j4ARxa3",
+            "story": "Me encanto tener esta tabla! 7 dias increibles con mi Naish! Super recomendable"
+        },
+        {
+            "user_id" : "5a6376216d1257161e71e3b2",
+            "username": "elena",
+            "image" : "https://imgur.com/QnZSvuT",
+            "story": "Me da mucha pena dejarla pero se que alguien como yo le sacará partido."
+        },
+        {
+            "user_id" : "5a6375f86d1257161e71e3ac",
+            "username": "carlos",
+            "image" : "https://imgur.com/zlRuLGc",
+            "story": "Genial experiencia! Gracias!"
+        }
+    ]
+}

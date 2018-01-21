@@ -29,5 +29,7 @@ export default {
 }
 button, a {
   outline: none !important;
+  text-decoration: none !important;
+  color: inherit;
 }
 </style>

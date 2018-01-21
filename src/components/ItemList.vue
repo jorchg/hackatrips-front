@@ -1,57 +1,93 @@
 <template>
-  <div class="container">
-    <b-container fluid>
-      <b-row>
-        <item
-          :data="object"
-          v-for="object in objects"
-          v-bind:key="JSON.stringify(object)"
-        ></item>
-      </b-row>
-    </b-container>
+  <div>
+    <pulse-loader :loading="loading"></pulse-loader>
+    <div class="container">
+      <b-container fluid>
+        <b-row>
+          <item
+            :data="object"
+            :index="index"
+            v-for="(object, index) in objects"
+            v-bind:key="JSON.stringify(object)"
+          ></item>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </template>
 
 <script>
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import Item from '@/components/Item';
-import objects from '../assets/mocks/objects.json';
+import axios from 'axios';
 
 export default {
   name: 'ItemList',
   components: {
     Item,
+    PulseLoader,
   },
   props: [
 
   ],
   data() {
     return {
+      loading: true,
+      size: '100%',
+      color: '',
       locationOptions: {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0,
       },
-      objects,
+      objects: [],
+      loadingObjects: [],
       longitude: 0,
       latitude: 0,
     };
   },
   methods: {
-    locationSuccess(pos) {
+    async locationSuccess(pos) {
+      this.loadingObjects = await axios.get('http://localhost:8000/objects')
+        .then(response => response.data);
+
       this.longitude = pos.coords.longitude;
       this.latitude = pos.coords.latitude;
-      this.objects = this.objects.map((object) => {
+      this.loadingObjects = this.loadingObjects.map((object) => {
         object.distance = Math.round(this.getDistanceFromLatLonInKm(
-          object.location.coordinates[0],
-          object.location.coordinates[1],
+          object.location[0].coordinates[0],
+          object.location[0].coordinates[1],
           this.latitude,
           this.longitude,
         ));
         return object;
       });
-      this.objects.sort((a, b) => {
+      this.loadingObjects.sort((a, b) => {
         return a.distance > b.distance;
       });
+      this.objects = this.loadingObjects;
+      this.loading = false;
+    },
+    async locationFail() {
+      console.log('Failed location');
+      this.loadingObjects = await axios.get('http://localhost:8000/objects')
+        .then(response => response.data)
+      this.longitude = -3.721704654052;
+      this.latitude = 40.475744000324;
+      this.loadingObjects = this.loadingObjects.map((object) => {
+        object.distance = Math.round(this.getDistanceFromLatLonInKm(
+          object.location[0].coordinates[0],
+          object.location[0].coordinates[1],
+          this.latitude,
+          this.longitude,
+        ));
+        return object;
+      });
+      this.loadingObjects.sort((a, b) => {
+        return a.distance > b.distance;
+      });
+      this.objects = this.loadingObjects;
+      this.loading = false;
     },
     getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
       const R = 6371;
@@ -69,11 +105,12 @@ export default {
       return deg * (Math.PI / 180)
     },
   },
-  created() {
+  async created() {
     window
       .navigator
       .geolocation
-      .getCurrentPosition(this.locationSuccess, null, this.locationOptions);
+      .getCurrentPosition(this.locationSuccess, this.locationFail, this.locationOptions);
+
   },
 };
 </script>
@@ -81,5 +118,11 @@ export default {
 <style scoped>
 .container {
   padding: 0px;
+}
+.v-spinner {
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
