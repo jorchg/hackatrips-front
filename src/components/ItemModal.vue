@@ -2,7 +2,12 @@
   <div>
     <!-- Modal Component -->
     <b-modal :ref="'modal_' + this.$route.params.id" @ok="handleOk" @cancel="$router.go(-1)" id="modal" :title="data.name">
-      <div v-if="data.price > this.me.balance">
+      <div v-if="paymentOk">
+        <h4>El pago ha sido realizado correctamente</h4>
+        <p>¡Enhorabuena! Ya puedes coger el artículo</p>
+        <div slot="modal-footer" class="w-100"></div>
+      </div>
+      <div v-if="(data.price > this.me.balance) && !paymentOk">
         <p>
           Lo sentimos, pero este objeto cuesta <span style="font-weight: 600;">{{ data.price }}</span>
           y en tu cuenta sólo tienes <span style="font-weight: 600;">{{ this.me.balance}}</span>
@@ -42,6 +47,7 @@ export default {
     return {
       data: {},
       me: {},
+      paymentOk: false,
       bbvacode: '',
       bbvaAuth: 'YXBwLmJidmEudHNzOkEkQERzRkpqUkJAdVJnTiVCUVJnQEQ0TmZ5aW1sSUlWWk9Rd3lEZnFLc08xQnpiTnpHTzdiTlNYUUZhVVlHRlo=',
     };
@@ -96,6 +102,11 @@ export default {
         .then(response => response.data.data);
 
       this.bbvacode = '';
+      this.paymentOk = true;
+      const modalRef = `modal_${this.$route.params.id}`;
+      setTimeout(() => {
+        this.$refs[modalRef].hide()
+      }, 2000);
     },
   },
   async created() {

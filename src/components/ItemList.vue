@@ -47,7 +47,10 @@ export default {
     };
   },
   methods: {
-    locationSuccess(pos) {
+    async locationSuccess(pos) {
+      this.loadingObjects = await axios.get('http://localhost:8000/objects')
+        .then(response => response.data);
+
       this.longitude = pos.coords.longitude;
       this.latitude = pos.coords.latitude;
       this.loadingObjects = this.loadingObjects.map((object) => {
@@ -65,8 +68,10 @@ export default {
       this.objects = this.loadingObjects;
       this.loading = false;
     },
-    locationFail() {
+    async locationFail() {
       console.log('Failed location');
+      this.loadingObjects = await axios.get('http://localhost:8000/objects')
+        .then(response => response.data)
       this.longitude = -3.721704654052;
       this.latitude = 40.475744000324;
       this.loadingObjects = this.loadingObjects.map((object) => {
@@ -106,8 +111,6 @@ export default {
       .geolocation
       .getCurrentPosition(this.locationSuccess, this.locationFail, this.locationOptions);
 
-    this.loadingObjects = await axios.get('http://localhost:8000/objects')
-      .then(response => response.data)
   },
 };
 </script>

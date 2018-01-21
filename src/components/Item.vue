@@ -1,5 +1,4 @@
 <template>
-  <!-- <router-link :to="{ name: 'Object', params: { id: data._id }}"> -->
     <b-col class="col-12 col-sm-12 col-md-4">
       <b-card
         :title="data.name"
@@ -9,13 +8,15 @@
         tag="article"
         class="mb-1"
       >
-        <div class="object-info">
-          <span style="font-weight: 600;">{{ data.price }}</span><icon style="margin-left: 5px;" name="credit-card" scale="1"></icon>
-        </div>
-        <p class="card-text">
-          {{ data.description }}
-        </p>
-        <div v-if="noDistance !== true" class="location">
+        <router-link :to="{ name: 'Object', params: { id: data._id }}">
+          <div class="object-info">
+            <span style="font-weight: 600;">{{ data.price }}</span><icon style="margin-left: 5px;" name="credit-card" scale="1"></icon>
+          </div>
+          <p class="card-text">
+            {{ data.description }}
+          </p>
+        </router-link>
+        <div v-if="noDistance !== true" class="location" style="margin-top: 15px;">
           <div class="location-text">
             <span><icon style="margin-left: 5px; margin-right: 5px;" name="map-marker" scale="1"></icon>{{ data.location[0].name }}</span><span>{{ data.location[0].poi_name }}</span>
           </div>
@@ -28,7 +29,6 @@
         <!-- <b-button href="#" variant="primary">Lo quiero!</b-button> -->
       </b-card>
     </b-col>
-  <!-- </router-link> -->
 </template>
 
 <script>
