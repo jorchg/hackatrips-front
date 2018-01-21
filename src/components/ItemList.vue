@@ -65,6 +65,25 @@ export default {
       this.objects = this.loadingObjects;
       this.loading = false;
     },
+    locationFail() {
+      console.log('Failed location');
+      this.longitude = -3.721704654052;
+      this.latitude = 40.475744000324;
+      this.loadingObjects = this.loadingObjects.map((object) => {
+        object.distance = Math.round(this.getDistanceFromLatLonInKm(
+          object.location[0].coordinates[0],
+          object.location[0].coordinates[1],
+          this.latitude,
+          this.longitude,
+        ));
+        return object;
+      });
+      this.loadingObjects.sort((a, b) => {
+        return a.distance > b.distance;
+      });
+      this.objects = this.loadingObjects;
+      this.loading = false;
+    },
     getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
       const R = 6371;
       let dLat = this.deg2rad(lat2 - lat1);
@@ -85,7 +104,7 @@ export default {
     window
       .navigator
       .geolocation
-      .getCurrentPosition(this.locationSuccess, null, this.locationOptions);
+      .getCurrentPosition(this.locationSuccess, this.locationFail, this.locationOptions);
 
     this.loadingObjects = await axios.get('http://localhost:8000/objects')
       .then(response => response.data)

@@ -21,22 +21,10 @@
           </div>
           <p class="card-text card-text-bold" v-bind:key="Number(latitude)">Distancia: {{ data.distance }} Km</p>
         </div>
-        <div>
-          <b-btn v-b-modal="'modal' + this.index" variant="primary">Lo quiero!</b-btn>
-          <!-- Modal Component -->
-          <b-modal @ok="handleOk" :id="'modal' + this.index" :title="data.name">
-            <div v-if="data.price > this.me.balance">
-              <h1>NO TIENES PASTUKI!</h1>
-            </div>
-            <div v-else>
-              <p>Estás a punto de tomar prestado
-                <span style="font-weight: 600;">{{ data.name }}.</span>
-                Por favor, cuídalo, sé respetuoso y devuélvelo para que
-                la comunidad siga avanzando. ¡Muchas gracias!
-              </p>
-            </div>
-          </b-modal>
-        </div>
+        <router-link :to="{name: 'itemModal', params: {id: data._id}}">
+          <b-button variant="primary">Lo quiero!</b-button>
+        </router-link>
+        <router-view></router-view>
         <!-- <b-button href="#" variant="primary">Lo quiero!</b-button> -->
       </b-card>
     </b-col>
